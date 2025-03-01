@@ -218,6 +218,10 @@
         // Generate button
         let sig_image = "";
         async function gen_signture() {
+            if(document.getElementById("name_input").value == ""){
+                alert("input Name first!!!");
+                return
+            }
             document.getElementById("loaderPopup").style.display = "flex";
             // send name and options
             console.log(document.getElementById("name_input").value)
