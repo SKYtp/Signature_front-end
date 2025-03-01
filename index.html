@@ -24,7 +24,7 @@
     <div class="container">
         <div class="title" id="title_name">Signature Design Generator</div>
         <div class="profile-card div_main_input" id="generator">
-            <label class="label-text-1" id="label_generator">ชื่อจริง:</label>
+            <label class="label-text-1" id="label_generator">ชื่อจริง(ภาษาไทย):</label>
             <div class="input-container">
                 <input type="text" id="name_input" oninput="validateThai(this)" placeholder="พิมพ์ชื่อจริงที่นี่...">
             </div>
@@ -137,7 +137,7 @@
             document.getElementById("loaderPopup").style.display = "none";
         }
         function validateThai(input) {
-            input.value = input.value.replace(/[^ก-๙เแโใไะาำุูึืัิี็่้๊๋์]/g, '');
+            input.value = input.value.replace(/[^ก-ฮเแโใไะาำุูึืัิี็่้๊๋์]/g, '');
         }
         // check box
         const checkboxLine = document.getElementById('checkbox_line');
