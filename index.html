@@ -255,7 +255,11 @@
                     console.error("No image received:", data);
                 }
             })
-            .catch(error => console.error("Error sending JSON:", error));
+            .catch(error => {
+                console.error("Error sending JSON:", error)
+                document.getElementById("loaderPopup").style.display = "none";
+                alert(`${error} > Please press Generate again`);
+            });
             // const pointsObject = JSON.parse(data_keep.points);
             const pointsObject = data_keep.points;
             let point1 = pointsObject.point1;
