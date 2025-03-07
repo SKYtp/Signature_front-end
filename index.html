@@ -9,11 +9,16 @@
     <link rel="stylesheet" type="text/css" href="./css/check_box.css">
     <link rel="stylesheet" type="text/css" href="./css/select-box.css">
     <link rel="stylesheet" type="text/css" href="./css/input-box.css">
+    <link rel="stylesheet" type="text/css" href="./css/popup.css">
 </head>
 <body>
     <!-- Loader Overlay -->
     <div class="loader-overlay" id="loaderPopup">
         <div class="loader"></div>
+    </div>
+    <div id="popup" class="popup">
+        <p>&#10004; Inquiry Complete</p>
+        <button onclick="closePopup()">OK</button>
     </div>
     <ul>
         <li><a href="#title_name">Generator</a></li>
@@ -187,6 +192,7 @@
                 alert("Please Generate first");
                 return
             }
+            document.getElementById("loaderPopup").style.display = "flex";
             let ratings = {};
             document.querySelectorAll('.star-rating').forEach((rating, index) => {
                 ratings[`category_${index + 1}`] = rating.getAttribute('data-rating');
@@ -212,8 +218,15 @@
             .then(response => response.json())  // Expect JSON, not a blob
             .then(data => {
                 console.log(data.receivedData)
+                // alert("Inquiry complete!!!");
             })
-            .catch(error => console.error("Error sending JSON:", error));
+            .catch(error => {
+                console.error("Error sending JSON:", error)
+                document.getElementById("loaderPopup").style.display = "none";
+                alert(`${error} > Please press Submit again`);
+            });
+            document.getElementById("loaderPopup").style.display = "none";
+            document.getElementById('popup').style.display = 'block';
         }
         // Generate button
         let sig_image = "";
@@ -357,6 +370,9 @@
             }else{
                 convertBase64ToSVG(sig_image);
             }
+        }
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
         }
     </script>
 </body>
