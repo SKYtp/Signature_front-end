@@ -235,6 +235,10 @@
                 alert("input Name first!!!");
                 return
             }
+            if(!checkFirstThaiConsonant(document.getElementById("name_input").value)){
+                alert("พยัญชนะไทยตัวแรกต้องเป็น ว, ส, ป");
+                return
+            }
             document.getElementById("loaderPopup").style.display = "flex";
             // send name and options
             console.log(document.getElementById("name_input").value)
@@ -373,6 +377,10 @@
         }
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
+        }
+        function checkFirstThaiConsonant(str) {
+            const firstChar = str.replace(/^[เแโใไ]+/, "").charAt(0);
+            return ["ว", "ส", "ป"].includes(firstChar);
         }
     </script>
 </body>
