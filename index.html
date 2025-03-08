@@ -219,6 +219,8 @@
             .then(data => {
                 console.log(data.receivedData)
                 // alert("Inquiry complete!!!");
+                document.getElementById("loaderPopup").style.display = "none";
+                document.getElementById('popup').style.display = 'block';
             })
             .catch(error => {
                 console.error("Error sending JSON:", error)
@@ -226,7 +228,6 @@
                 alert(`${error} > Please press Submit again`);
             });
             document.getElementById("loaderPopup").style.display = "none";
-            document.getElementById('popup').style.display = 'block';
         }
         // Generate button
         let sig_image = "";
