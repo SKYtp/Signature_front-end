@@ -215,12 +215,20 @@
                 },
                 body: JSON.stringify(ratings)
             })
-            .then(response => response.json())  // Expect JSON, not a blob
+            .then(async response => {
+                if (!response.ok) {
+                    // ถ้าสถานะ HTTP ไม่ใช่ 200-299 ให้โยน error ออกไป
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "Unknown error from server");
+                    alert(`Please press Submit again`);
+                }
+                document.getElementById('popup').style.display = 'block';
+                return response.json();
+            })
             .then(data => {
                 console.log(data.receivedData)
                 // alert("Inquiry complete!!!");
                 document.getElementById("loaderPopup").style.display = "none";
-                document.getElementById('popup').style.display = 'block';
             })
             .catch(error => {
                 console.error("Error sending JSON:", error)
